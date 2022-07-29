@@ -1,0 +1,29 @@
+<!doctype html>
+<style>
+	html, body {
+		margin: 0;
+		padding: 0;
+	}
+
+	.page {
+		width: 100%;
+		page-break-after: always;
+		-webkit-print-color-adjust: exact;
+
+		background: red;
+	}
+	@page {
+		margin: 4cm !important;
+		padding: 2cm;
+		size: A5;
+	}
+</style>
+<div class="page">
+	<header>
+		<a href="#p4">Goto 4</a>
+	</header>
+</div>
+<div class="page" id="p2">2</div>
+<div class="page" id="p3">3</div>
+<div class="page" id="p4">4</div>
+<div class="page" id="p5">5</div>
