@@ -1,29 +1,209 @@
-<!doctype html>
+<!DOCTYPE html>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+  href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+  rel="stylesheet"
+/>
 <style>
-	html, body {
-		margin: 0;
-		padding: 0;
-	}
+  html,
+  body {
+    margin: 0;
+    padding: 0;
+    font-family: "Fira Sans";
+    font-size: 12pt;
+    line-height: 1.2em;
+    font-weight: 300;
+  }
 
-	.page {
-		width: 100%;
-		page-break-after: always;
-		-webkit-print-color-adjust: exact;
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
 
-		background: red;
-	}
-	@page {
-		margin: 4cm !important;
-		padding: 2cm;
-		size: A5;
-	}
+  .page {
+    width: 100%;
+    page-break-after: always;
+    -webkit-print-color-adjust: exact;
+  }
+
+  .page header {
+    line-height: 2;
+    border-bottom: 1px solid black;
+    display: flex;
+    gap: 1em;
+    padding: 0 0.5em;
+  }
+
+  .title {
+    text-align: center;
+    flex-grow: 1;
+    font-weight: 500;
+  }
+
+  @page {
+    margin: 0;
+    margin-left: 1cm;
+    size: A5;
+  }
 </style>
-<div class="page">
-	<header>
-		<a href="#p4">Goto 4</a>
-	</header>
-</div>
-<div class="page" id="p2">2</div>
-<div class="page" id="p3">3</div>
-<div class="page" id="p4">4</div>
-<div class="page" id="p5">5</div>
+<main id="main"></main>
+<script type="module">
+  const { main } = document.all;
+  const params = new URLSearchParams(location.search);
+  const year = params.get("year") ?? new Date().getFullYear();
+
+  let markup = "";
+  const monthF = new Intl.DateTimeFormat("en-US", { month: "long" });
+  const fullDateF = new Intl.DateTimeFormat("en-US", {
+    day: "2-digit",
+    month: "long",
+    weekday: "long",
+  });
+
+  const date = new Date(Date.parse(`01 Jan ${year}`));
+  let d = date.getDay() - 1;
+  let lastY, lastQ, lastM, lastW;
+  do {
+    const y = date.getFullYear();
+    const q = getQuarter(date);
+    const m = date.getMonth() + 1;
+    const w = Math.floor(d / 7) + 1;
+    const fullDate = fullDateF.format(date);
+    const monthName = monthF.format(date);
+    if (y !== lastY) {
+      main.append(
+        template({
+          date,
+          y,
+          title: `Year ${y}`,
+          currentPrefix: "y",
+          currentIdx: y,
+          classes: ["year"],
+        })
+      );
+    }
+    if (q !== lastQ) {
+      main.append(
+        template({
+          date,
+          q,
+          y,
+          title: `${q}. Quarter`,
+          monthName,
+          currentPrefix: "q",
+          currentIdx: q,
+          next: {
+            "-": q > 1 ? `q${q - 1}` : null,
+            "+": q < 4 ? `q${q + 1}` : null,
+          },
+          classes: ["quarter"],
+        })
+      );
+    }
+    if (m !== lastM) {
+      main.append(
+        template({
+          date,
+          q,
+          y,
+          m,
+          title: monthName,
+          currentPrefix: "m",
+          currentIdx: m,
+          next: {
+            "-": m > 1 ? `m${m - 1}` : null,
+            "+": m < 12 ? `m${m + 1}` : null,
+          },
+          classes: ["month"],
+        })
+      );
+    }
+    if (w !== lastW) {
+      main.append(
+        template({
+          date,
+          q,
+          y,
+          m,
+          title: `${w}. Week`,
+          monthName,
+          currentPrefix: "w",
+          currentIdx: w,
+          next: {
+            "-": w > 1 ? `w${w - 1}` : null,
+            "+": w < 52 ? `w${w + 1}` : null,
+          },
+          classes: ["week"],
+        })
+      );
+    }
+    main.append(
+      template({
+        date,
+        d,
+        q,
+        y,
+        m,
+        w,
+        title: fullDate,
+        monthName,
+        currentPrefix: "d",
+        currentIdx: d,
+        next: {
+          "-": `d${d - 1}`,
+          "+": `d${d + 1}`,
+          "+W": `w${w + 1}`,
+          "+M": `m${m + 1}`,
+          "+Q": `q${q + 1}`,
+        },
+        classes: ["day"],
+      })
+    );
+
+    date.setHours(24);
+    d += 1;
+    lastW = w;
+    lastQ = q;
+    lastM = m;
+    lastY = y;
+  } while (!(date.getDate() == 1 && date.getMonth() == 0));
+
+  function template({
+    id,
+    date,
+    d,
+    q,
+    y,
+    m,
+    w,
+    title,
+    monthName,
+    currentPrefix,
+    currentIdx,
+    next = {},
+    classes = [],
+  }) {
+    const div = document.createElement("div");
+    div.classList.add("page", ...classes);
+    div.id = `${currentPrefix}${currentIdx}`;
+    div.innerHTML = `<header>
+				<a href="#y${y}">${y}</a>
+				${q ? `<a href="#q${q}">Q${q}</a>` : ``}
+				${m && monthName ? `<a href="#m${m}">${monthName}</a>` : ``}
+				${w ? `<a href="#w${w}">W${w}</a>` : ``}
+				<a href="#${currentPrefix}${currentIdx}" class="title">${title}</a>
+				${Object.entries(next)
+          .map(([k, v]) => `<a href="#${v}">${k}</a>`)
+          .join("")}
+			</header>`;
+    return div;
+  }
+
+  function getQuarter(date) {
+    if (date.getMonth() + 1 >= 10) return 4;
+    if (date.getMonth() + 1 >= 7) return 3;
+    if (date.getMonth() + 1 >= 4) return 2;
+    return 1;
+  }
+</script>
