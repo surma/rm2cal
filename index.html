@@ -25,6 +25,7 @@
     width: 100%;
     page-break-after: always;
     -webkit-print-color-adjust: exact;
+    clear: both;
   }
 
   .page header {
@@ -38,6 +39,21 @@
   .title {
     text-align: center;
     flex-grow: 1;
+    font-weight: 500;
+  }
+
+  ul.calendar {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    float: right;
+  }
+  .calendar li {
+    display: block;
+    padding: 0.5em;
+  }
+  .calendar .header {
     font-weight: 500;
   }
 
@@ -102,22 +118,39 @@
       );
     }
     if (m !== lastM) {
-      main.append(
-        template({
-          date,
-          q,
-          y,
-          m,
-          title: monthName,
-          currentPrefix: "m",
-          currentIdx: m,
-          next: {
-            "-": m > 1 ? `m${m - 1}` : null,
-            "+": m < 12 ? `m${m + 1}` : null,
-          },
-          classes: ["month"],
-        })
+      const container = template({
+        date,
+        q,
+        y,
+        m,
+        title: monthName,
+        currentPrefix: "m",
+        currentIdx: m,
+        next: {
+          "-": m > 1 ? `m${m - 1}` : null,
+          "+": m < 12 ? `m${m + 1}` : null,
+        },
+        classes: ["month"],
+      });
+      let subdate = new Date(date);
+      let i = 0;
+      const calItems = [];
+      calItems.push(
+        ...["M", "T", "W", "T", "F", "S", "S"].map(
+          (d) => `<li class="header">${d}</li>`
+        )
       );
+      for (let i = 1; i < subdate.getDay(); i++) {
+        calItems.push(`<li></li>`);
+      }
+      do {
+        console.log(subdate.toString());
+        calItems.push(`<li><a href="#d${d + i}">${subdate.getDate()}</a></li>`);
+        subdate.setHours(24);
+        i += 1;
+      } while (subdate.getMonth() + 1 === m);
+      container.innerHTML += `<ul class="calendar">${calItems.join("")}</ul>`;
+      main.append(container);
     }
     if (w !== lastW) {
       main.append(
