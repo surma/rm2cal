@@ -1,0 +1,17 @@
+.header {
+	line-height: 2;
+	border-bottom: 1px solid var(--black);
+	display: flex;
+	gap: 1em;
+	padding: 0 0.5em;
+}
+
+.title {
+	text-align: center;
+	flex-grow: 1;
+	font-weight: 500;
+}
+
+.closebtn {
+	width: 0.7cm;
+}
