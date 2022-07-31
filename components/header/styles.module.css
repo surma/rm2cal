@@ -15,3 +15,10 @@
 .closebtn {
 	width: 0.7cm;
 }
+
+.forwardlinks {
+	justify-content: flex-end;
+	border: none;
+	font-size: 0.8em;
+	margin-bottom: 1em;
+}
