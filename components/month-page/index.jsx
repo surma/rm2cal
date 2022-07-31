@@ -1,3 +1,4 @@
+import { monthNameFormatter } from "../../date-formatters";
 import { getYear } from "../../date-utils";
 import Header from "../header";
 
@@ -6,10 +7,8 @@ export default function ({ date }) {
 		<>
 			<Header
 				{...{ date }}
-				titleFormatter={(d) => getYear(d)}
-				linkToYear={false}
+				titleFormatter={(d) => monthNameFormatter.format(d)}
 				linkToMonth={false}
-				linkToQuarter={false}
 				linkToWeek={false}
 			/>
 		</>

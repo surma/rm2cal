@@ -1,10 +1,38 @@
-import { titleFormatter } from "../../date-formatters";
+import {
+	monthNameFormatter,
+	titleFormatter as defaultTitleFormatter,
+} from "../../date-formatters";
+import {
+	getMonthOfYear,
+	getQuarterOfYear,
+	getWeekOfYear,
+	getYear,
+} from "../../date-utils";
 import * as classes from "./styles.module.css";
 
-export default function Header({ date }) {
+export default function Header({
+	date,
+	titleFormatter = (d) => defaultTitleFormatter.format(d),
+	linkToYear = true,
+	linkToQuarter = true,
+	linkToMonth = true,
+	linkToWeek = true,
+}) {
 	return (
 		<header class={classes.header}>
-			<span class={classes.title}>{titleFormatter.format(date)}</span>
+			{linkToYear ? <a href={`#y${getYear(date)}`}>{getYear(date)}</a> : null}
+			{linkToQuarter ? (
+				<a href={`#q${getQuarterOfYear(date)}`}>Q{getQuarterOfYear(date)}</a>
+			) : null}
+			{linkToMonth ? (
+				<a href={`#m${getMonthOfYear(date)}`}>
+					{monthNameFormatter.format(date)}
+				</a>
+			) : null}
+			{linkToWeek ? (
+				<a href={`#w${getWeekOfYear(date)}`}>Week {getWeekOfYear(date)}</a>
+			) : null}
+			<span class={classes.title}>{titleFormatter(date)}</span>
 			<span class={classes.closebtn} />
 		</header>
 	);

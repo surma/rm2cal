@@ -11,14 +11,55 @@ export function* dateRange(
 	}
 }
 
+export function getCurrentDate() {
+	return new Date();
+}
+
+export function getDateForNumbers({ year, month, day }) {
+	return new Date(`${year}-${month}-${day}`);
+}
+
 /**
  * @param {Date} date
  */
-export function getQuarter(date) {
+export function getYear(date) {
+	return date.getFullYear();
+}
+
+/**
+ * @param {Date} date
+ */
+export function getQuarterOfYear(date) {
 	if (date.getMonth() + 1 >= 10) return 4;
 	if (date.getMonth() + 1 >= 7) return 3;
 	if (date.getMonth() + 1 >= 4) return 2;
 	return 1;
+}
+
+/**
+ * @param {Date} date
+ */
+export function getDayOfYear(date) {
+	const startOfYear = getDateForNumbers({
+		year: getYear(date),
+		month: 1,
+		day: 1,
+	});
+	return Math.ceil((date - startOfYear) / (24 * 60 * 60 * 1000)) + 1;
+}
+
+/**
+ * @param {Date} date
+ */
+export function getWeekOfYear(date) {
+	return Math.floor(getDayOfYear(date) / 7) + 1;
+}
+
+/**
+ * @param {Date} date
+ */
+export function getMonthOfYear(date) {
+	return date.getMonth() + 1;
 }
 
 /**
@@ -41,7 +82,7 @@ export function isMonthBoundary(date) {
 export function isQuarterBoundary(date) {
 	const yesterday = new Date(date);
 	yesterday.setHours(-24);
-	return getQuarter(date) != getQuarter(yesterday);
+	return getQuarterOfYear(date) != getQuarterOfYear(yesterday);
 }
 
 /**

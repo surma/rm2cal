@@ -1,4 +1,4 @@
-import { getYear } from "../../date-utils";
+import { getQuarterOfYear, getYear } from "../../date-utils";
 import Header from "../header";
 
 export default function ({ date }) {
@@ -6,8 +6,7 @@ export default function ({ date }) {
 		<>
 			<Header
 				{...{ date }}
-				titleFormatter={(d) => getYear(d)}
-				linkToYear={false}
+				titleFormatter={(d) => `Q${getQuarterOfYear(d)}`}
 				linkToMonth={false}
 				linkToQuarter={false}
 				linkToWeek={false}
