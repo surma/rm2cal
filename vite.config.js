@@ -1,5 +1,5 @@
 export default {
-  esbuild: {
-    jsxInject: `import {h} from 'preact'`,
-  },
+	esbuild: {
+		jsxInject: `import * as React from 'preact'`,
+	},
 };

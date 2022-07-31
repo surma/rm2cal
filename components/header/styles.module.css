@@ -1,0 +1,27 @@
+.header {
+	line-height: 2;
+	border-bottom: 1px solid var(--black);
+	display: flex;
+	padding: 0 0.5em;
+}
+
+.title {
+	text-align: center;
+	flex-grow: 1;
+	font-weight: 500;
+}
+
+.closebtn {
+	width: 0.7cm;
+}
+
+.forwardlinks {
+	justify-content: flex-end;
+	border: none;
+	font-size: 0.8em;
+	margin-bottom: 1em;
+}
+
+.header > * {
+	padding: 0.4em;
+}
