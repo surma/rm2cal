@@ -1,0 +1,18 @@
+.list {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-end;
+	font-size: 0.8em;
+	justify-content: flex-end;
+}
+
+.list li {
+	padding: 0;
+}
+
+.list a {
+	padding: 0.4em;
+}

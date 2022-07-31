@@ -2,13 +2,15 @@
 	line-height: 2;
 	border-bottom: 1px solid var(--black);
 	display: flex;
-	padding: 0 0.5em;
+	align-items: center;
+	font-size: 0.8rem;
 }
 
 .title {
 	text-align: center;
 	flex-grow: 1;
 	font-weight: 500;
+	font-size: 1rem;
 }
 
 .closebtn {

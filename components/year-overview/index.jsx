@@ -14,7 +14,7 @@ export default function () {
 					</th>
 					{range(3).map((m) => (
 						<td>
-							<a href={`#m${q * 3 + m}`}>
+							<a href={`#m${q * 3 + m + 1}`}>
 								{monthNameFormatter.format(
 									getDateForNumbers({
 										year: 2010,

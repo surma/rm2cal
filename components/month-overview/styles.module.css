@@ -4,16 +4,17 @@
 	margin-right: 1em;
 	margin-left: auto;
 	line-height: 1em;
+	text-align: right;
 }
 
 .cal th {
 	font-weight: 300;
-	padding-right: 1em;
 }
 
 .cal :is(a) {
 	display: inline-block;
 	padding: 0.4em;
+	padding-right: 0;
 }
 
 .title {
