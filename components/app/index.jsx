@@ -2,6 +2,7 @@ import { useMemo } from "preact/hooks";
 
 import { dateRange } from "../../date-utils.js";
 import Page from "../page/index.jsx";
+import Fonts from "../fonts/index.jsx";
 
 import * as classes from "./styles.module.css";
 
@@ -24,5 +25,10 @@ export default function App() {
     )
   );
 
-  return <>{pages}</>;
+  return (
+    <>
+      <Fonts />
+      {pages}
+    </>
+  );
 }
