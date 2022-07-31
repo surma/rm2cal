@@ -19,11 +19,32 @@ export function getDateForNumbers({ year, month, day }) {
 	return new Date(`${year}-${month}-${day}`);
 }
 
+export function getDateWithOffset(day, dayOffset) {
+	const copy = new Date(day);
+	copy.setDate(copy.getDate() + dayOffset);
+	return copy;
+}
+
 /**
  * @param {Date} date
  */
 export function getYear(date) {
 	return date.getFullYear();
+}
+
+/**
+ * @param {Date} date
+ * @returns Index of the day of the week (0 = monday, ..., 6 = sunday)
+ */
+export function getDayOfWeek(date) {
+	return (date.getDay() + 6) % 7;
+}
+
+/**
+ * @param {Date} date
+ */
+export function getDayOfMonth(date) {
+	return date.getDate();
 }
 
 /**
@@ -73,7 +94,7 @@ export function isWeekBoundary(date) {
  * @param {Date} date
  */
 export function isMonthBoundary(date) {
-	return date.getDate() === 1;
+	return getDayOfMonth(date) === 1;
 }
 
 /**

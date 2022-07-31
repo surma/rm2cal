@@ -2,7 +2,6 @@
 	line-height: 2;
 	border-bottom: 1px solid var(--black);
 	display: flex;
-	gap: 1em;
 	padding: 0 0.5em;
 }
 
@@ -21,4 +20,8 @@
 	border: none;
 	font-size: 0.8em;
 	margin-bottom: 1em;
+}
+
+.header > * {
+	padding: 0.4em;
 }

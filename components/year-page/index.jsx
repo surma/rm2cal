@@ -1,5 +1,8 @@
 import { getYear } from "../../date-utils";
 import Header from "../header";
+import YearOverview from "../year-overview";
+
+import * as classes from "./styles.module.css";
 
 export default function ({ date }) {
 	return (
@@ -12,6 +15,7 @@ export default function ({ date }) {
 				linkToQuarter={false}
 				linkToWeek={false}
 			/>
+			<YearOverview year={getYear(date)} />
 		</>
 	);
 }

@@ -21,9 +21,7 @@ export default function Header({
 	return (
 		<>
 			<header class={classes.header}>
-				{linkToYear ? (
-					<a href={`#y${getYear(date) + 1}`}>{getYear(date)}</a>
-				) : null}
+				{linkToYear ? <a href={`#y${getYear(date)}`}>{getYear(date)}</a> : null}
 				{linkToQuarter ? (
 					<a href={`#q${getQuarterOfYear(date)}`}>Q{getQuarterOfYear(date)}</a>
 				) : null}
@@ -39,15 +37,13 @@ export default function Header({
 				<span class={classes.closebtn} />
 			</header>
 			<header class={[classes.header, classes.forwardlinks].join(" ")}>
-				{linkToQuarter && getQuarterOfYear(date) < 4 ? (
+				{getQuarterOfYear(date) < 4 ? (
 					<a href={`#q${getQuarterOfYear(date) + 1}`}>Next Quarter</a>
 				) : null}
-				{linkToMonth && getMonthOfYear(date) < 12 ? (
+				{getMonthOfYear(date) < 12 ? (
 					<a href={`#m${getMonthOfYear(date) + 1}`}>Next Month</a>
 				) : null}
-				{linkToWeek ? (
-					<a href={`#w${getWeekOfYear(date) + 1}`}>Next Week</a>
-				) : null}
+				<a href={`#w${getWeekOfYear(date) + 1}`}>Next Week</a>
 			</header>
 		</>
 	);
