@@ -1,10 +1,16 @@
-import { render, h } from "preact";
+import { render } from "preact";
+import App from "./components/app/index.jsx";
 
 import { dateRange, getQuarter } from "./date-utils.js";
 
+const { main } = document.all;
+
+render(<App />, main);
+
+/*
+
 console.log(Array.from(dateRange("2022-01-01", "2023-01-01")));
 
-const { main } = document.all;
 const params = new URLSearchParams(location.search);
 const year = params.get("year") ?? new Date().getFullYear();
 
@@ -172,3 +178,5 @@ function template({
 			</header>`;
   return div;
 }
+
+*/

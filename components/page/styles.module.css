@@ -1,0 +1,24 @@
+.page {
+  clear: both;
+}
+
+@media screen {
+  .page {
+    outline: 1px solid black;
+    width: calc(100vmin / 1.414);
+    height: 100vmin;
+    margin: 1em auto;
+  }
+}
+
+@media print {
+  .page {
+    width: 100%;
+    page-break-after: always;
+  }
+  @page {
+    margin: 0;
+    margin-left: 1.4cm;
+    size: A5;
+  }
+}

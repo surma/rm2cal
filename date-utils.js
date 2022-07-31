@@ -3,6 +3,7 @@ export function* dateRange(
   end,
   inc = (d) => d.setHours(d.getHours() + 24)
 ) {
+  end = new Date(end);
   let current = new Date(start);
   while (current < end) {
     yield new Date(current);
