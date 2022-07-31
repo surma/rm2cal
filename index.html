@@ -42,6 +42,10 @@
     font-weight: 500;
   }
 
+	.closebtn {
+		width: .7cm;
+	}
+
   ul.calendar {
     list-style: none;
     padding: 0;
@@ -59,7 +63,7 @@
 
   @page {
     margin: 0;
-    margin-left: 1cm;
+    margin-left: 1.4cm;
     size: A5;
   }
 </style>
@@ -140,7 +144,7 @@
           (d) => `<li class="header">${d}</li>`
         )
       );
-      for (let i = 1; i < subdate.getDay(); i++) {
+      for (let i = 0; i < (subdate.getDay() + 6 % 7); i++) {
         calItems.push(`<li></li>`);
       }
       do {
@@ -229,6 +233,7 @@
 				${Object.entries(next)
           .map(([k, v]) => `<a href="#${v}">${k}</a>`)
           .join("")}
+				<div class="closebtn"></div>
 			</header>`;
     return div;
   }
