@@ -37,13 +37,24 @@ export default function Header({
 				<span class={classes.closebtn} />
 			</header>
 			<header class={[classes.header, classes.forwardlinks].join(" ")}>
-				{getQuarterOfYear(date) < 4 ? (
-					<a href={`#q${getQuarterOfYear(date) + 1}`}>Next Quarter</a>
-				) : null}
-				{getMonthOfYear(date) < 12 ? (
-					<a href={`#m${getMonthOfYear(date) + 1}`}>Next Month</a>
-				) : null}
-				<a href={`#w${getWeekOfYear(date) + 1}`}>Next Week</a>
+				<span>
+					<a href={`#w${getWeekOfYear(date) - 1}`}>Prev Week</a>
+					{getMonthOfYear(date) > 1 ? (
+						<a href={`#m${getMonthOfYear(date) - 1}`}>Prev Month</a>
+					) : null}
+					{getQuarterOfYear(date) > 1 ? (
+						<a href={`#q${getQuarterOfYear(date) - 1}`}>Prev Quarter</a>
+					) : null}
+				</span>
+				<span>
+					{getQuarterOfYear(date) < 4 ? (
+						<a href={`#q${getQuarterOfYear(date) + 1}`}>Next Quarter</a>
+					) : null}
+					{getMonthOfYear(date) < 12 ? (
+						<a href={`#m${getMonthOfYear(date) + 1}`}>Next Month</a>
+					) : null}
+					<a href={`#w${getWeekOfYear(date) + 1}`}>Next Week</a>
+				</span>
 			</header>
 		</>
 	);

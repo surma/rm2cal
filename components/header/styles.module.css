@@ -18,10 +18,15 @@
 }
 
 .forwardlinks {
-	justify-content: flex-end;
+	justify-content: space-between;
 	border: none;
 	font-size: 0.8em;
 	margin-bottom: 1em;
+}
+
+.forwardlinks > * {
+	display: flex;
+	gap: 1em;
 }
 
 .header > * {
