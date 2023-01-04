@@ -33,7 +33,6 @@ function MonthOverviewInternal({
 	header = true,
 }) {
 	const startDate = getDateForNumbers({ year, month, day: 1 });
-	const startWeek = getWeekOfYear(startDate);
 	const numLeads = getDayOfWeek(startDate);
 	const cells = Array.from({ length: numLeads }, () => null);
 	cells.push(
@@ -64,10 +63,11 @@ function MonthOverviewInternal({
 			)}
 			{range(numWeeks).map((w) => {
 				const days = cells.slice(w * 7, (w + 1) * 7);
+				const week = getWeekOfYear(getDateWithOffset(startDate, w * 7));
 				return (
 					<tr>
 						<th>
-							<a href={`#w${startWeek + w}`}>Week {startWeek + w}</a>
+							<a href={`#w${week}`}>Week {week}</a>
 						</th>
 						{days.map((day) => (
 							<td>

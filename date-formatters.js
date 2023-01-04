@@ -17,3 +17,7 @@ export const shortWeekdayFormatter = new Intl.DateTimeFormat(locale, {
 export const titleFormatter = new Intl.DateTimeFormat(locale, {
 	dateStyle: "full",
 });
+
+export const monthFormatter = new Intl.DateTimeFormat(locale, {
+	month: "long",
+});

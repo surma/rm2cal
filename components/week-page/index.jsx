@@ -1,4 +1,4 @@
-import { longWeekdayFormatter } from "../../date-formatters";
+import { longWeekdayFormatter, monthFormatter } from "../../date-formatters";
 import {
 	getDateWithOffset,
 	getDayOfYear,
@@ -23,7 +23,8 @@ export default function ({ date }) {
 					.map((date) => (
 						<li>
 							<a href={`#d${getDayOfYear(date)}`}>
-								{longWeekdayFormatter.format(date)}
+								<strong>{longWeekdayFormatter.format(date)}</strong>,{" "}
+								{monthFormatter.format(date)} {date.getDate()}
 							</a>
 						</li>
 					))}
