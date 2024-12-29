@@ -15,7 +15,7 @@ const weightMap = {
 function parseFontPath(path) {
 	const [name, params] = path.split("/").at(-1).split("-");
 	const weight = Object.entries(weightMap).find(([name, _weight]) =>
-		params.toLowerCase().includes(name)
+		params.toLowerCase().includes(name),
 	)?.[1];
 	const italic = params.toLowerCase().includes("italic");
 	return { path, name, weight, italic };
@@ -39,7 +39,7 @@ export default function Fonts() {
 	const fontpaths = useMemo(() => Object.keys(import.meta.glob("/**/*.ttf")));
 	const fonts = useMemo(
 		() => fontpaths.map((font) => parseFontPath(font)),
-		[fontpaths]
+		[fontpaths],
 	);
 	return fonts.map((font) => <FontFace font={font} />);
 }

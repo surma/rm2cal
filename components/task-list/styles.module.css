@@ -1,33 +1,33 @@
 .tasklist {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-auto-rows: min-content;
-  column-gap: 1em;
-  row-gap: 0em;
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	grid-auto-rows: min-content;
+	column-gap: 1em;
+	row-gap: 0em;
 }
 
 .taskitem {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  height: 1.5em;
-  gap: .2em;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	height: 1.5em;
+	gap: 0.2em;
 }
 
-.box{
-  width: 1em;
-  height: 1em;
-  flex-grow: 0;
-  flex-shrink: 0;
+.box {
+	width: 1em;
+	height: 1em;
+	flex-grow: 0;
+	flex-shrink: 0;
 }
 
 .border {
-  border: 1px solid black;
+	border: 1px solid black;
 }
 
 .underline {
-  height: 100%;
-  width: auto;
-  flex-grow: 1;
-  border-bottom: 1px solid black;
+	height: 100%;
+	width: auto;
+	flex-grow: 1;
+	border-bottom: 1px solid black;
 }

@@ -1,7 +1,7 @@
 export function* dateRange(
 	start,
 	end,
-	inc = (d) => d.setHours(d.getHours() + 24)
+	inc = (d) => d.setHours(d.getHours() + 24),
 ) {
 	end = new Date(end);
 	let current = new Date(start);

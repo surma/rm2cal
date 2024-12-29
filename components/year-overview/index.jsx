@@ -20,7 +20,7 @@ export default function () {
 										year: 2010,
 										month: q * 3 + m + 1,
 										day: 1,
-									})
+									}),
 								)}
 							</a>
 						</td>

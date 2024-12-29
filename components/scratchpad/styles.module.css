@@ -4,10 +4,10 @@
 	flex-grow: 1;
 }
 .scratchpad {
-	--color: rgba(0, 0, 0, .1);
+	--color: rgba(0, 0, 0, 0.1);
 	height: 100%;
 	width: 100%;
-	border:  5px dashed var(--color);
+	border: 5px dashed var(--color);
 	color: var(--color);
 	box-sizing: border-box;
 	border-radius: 3vmin;

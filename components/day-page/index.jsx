@@ -6,9 +6,8 @@ export default function ({ date }) {
 	return (
 		<>
 			<Header {...{ date }} />
-			<TaskList rows={14}/>
+			<TaskList rows={14} />
 			<Scratchpad />
-
 		</>
 	);
 }

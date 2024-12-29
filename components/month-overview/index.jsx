@@ -38,8 +38,8 @@ function MonthOverviewInternal({
 	cells.push(
 		...dateRange(
 			getDateForNumbers({ year, month, day: 1 }),
-			getDateForNumbers({ year, month: month + 1, day: 1 })
-		)
+			getDateForNumbers({ year, month: month + 1, day: 1 }),
+		),
 	);
 	const numWeeks = Math.ceil(cells.length / 7);
 

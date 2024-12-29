@@ -31,10 +31,10 @@ function dateForYear(year) {
 
 export default function App() {
 	const start = useMemo(() =>
-		dateForYear(getParameter("start", getYear(getCurrentDate())), [])
+		dateForYear(getParameter("start", getYear(getCurrentDate())), []),
 	);
 	const end = useMemo(() =>
-		dateForYear(getParameter("end", getYear(getCurrentDate()) + 1), [])
+		dateForYear(getParameter("end", getYear(getCurrentDate()) + 1), []),
 	);
 	const pages = useMemo(() => {
 		const pages = [];
@@ -43,30 +43,30 @@ export default function App() {
 				pages.push(
 					<Page id={`y${getYear(date)}`}>
 						<YearPage {...{ date }} />
-					</Page>
+					</Page>,
 				);
 			if (isQuarterBoundary(date))
 				pages.push(
 					<Page id={`q${getQuarterOfYear(date)}`}>
 						<QuarterPage {...{ date }} />
-					</Page>
+					</Page>,
 				);
 			if (isMonthBoundary(date))
 				pages.push(
 					<Page id={`m${getMonthOfYear(date)}`}>
 						<MonthPage {...{ date }} />
-					</Page>
+					</Page>,
 				);
 			if (isWeekBoundary(date))
 				pages.push(
 					<Page id={`w${getWeekOfYear(date)}`}>
 						<WeekPage {...{ date }} />
-					</Page>
+					</Page>,
 				);
 			pages.push(
 				<Page id={`d${getDayOfYear(date)}`}>
 					<DayPage {...{ date }} />
-				</Page>
+				</Page>,
 			);
 		}
 		return pages;
