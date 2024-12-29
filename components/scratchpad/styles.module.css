@@ -1,0 +1,21 @@
+.scratchpadarea {
+	box-sizing: border-box;
+	padding: 1em;
+	flex-grow: 1;
+}
+.scratchpad {
+	--color: rgba(0, 0, 0, .1);
+	height: 100%;
+	width: 100%;
+	border:  5px dashed var(--color);
+	color: var(--color);
+	box-sizing: border-box;
+	border-radius: 3vmin;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.bgtext {
+	font-weight: 400;
+}
